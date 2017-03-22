@@ -215,6 +215,17 @@ struct
       h = Z.one
     }
 
+  let secp256k1 =
+    {
+      p = Z.of_string_base 16 "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F";
+      a = Z.of_string_base 16 "0";
+      b = Z.of_string_base 16 "7";
+      g = Point (Z.of_string_base 16 "79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798",
+                 Z.of_string_base 16 "483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8");
+      n = Z.of_string_base 16 "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141";
+      h = Z.one
+    }
+
   let test_curve = {p = Z.(~$ 23); 
                     a = Z.(~$ 9);
                     b = Z.(~$ 17); 
@@ -224,6 +235,7 @@ struct
 
   let () = 
     Hashtbl.add curves "brainpool_P256_r1" brainpool_P256_r1;
+    Hashtbl.add curves "secp256k1" secp256k1;
     Hashtbl.add curves "test_curve" test_curve;
 
 end;;
