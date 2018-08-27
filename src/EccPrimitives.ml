@@ -44,9 +44,10 @@ let rec random_big_int bound =
   let max_size = String.length (Z.to_string bound) in
   let a = max (max_size/4) 1 in 
   let size = a + Random.int (max_size - a) in
-  let big_int = String.create size in
+  let big_int = Bytes.create size in
   let rand_str = 
-    String.map (fun c -> let i = 48 + (Random.int 9) in Char.chr i) big_int 
+    Bytes.to_string
+      (Bytes.map (fun c -> let i = 48 + (Random.int 9) in Char.chr i) big_int)
   in
   let num = Z.(one + (of_string rand_str)) in
     match num < bound with
